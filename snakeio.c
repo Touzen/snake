@@ -10,7 +10,8 @@ Screen* new_screen() {
     initscr();
     noecho();
     curs_set(0);
-    cbreak();       // All keyboard input should be available immediately
+    keypad(stdscr, 1);  // Enables the arrow keys, among others
+    cbreak();           // All keyboard input should be available immediately
 }
 
 void close_screen(Screen* screen) {
