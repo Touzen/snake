@@ -41,7 +41,7 @@ void update_direction(Snake* snake, MoveList* moves) {
         if (move->age == i) {
             seg->direction = move->direction;
             move->age++;
-            move = move->next;
+            move = move->prev;
         }
 
         seg = seg->next;
