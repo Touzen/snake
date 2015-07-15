@@ -9,7 +9,7 @@ typedef enum {
     DOWN,
     LEFT,
     RIGHT,
-    FAIL
+    NO_DIRECTION
 } Direction;
 
 /**
