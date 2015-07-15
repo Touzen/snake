@@ -48,5 +48,5 @@ void move(Snake* snake);
 /**
  * Given a snake, determine whether or not it has collided with itself.
 */
-int find_collision(Snake snake);
+int find_collision(Snake* snake);
 #endif
