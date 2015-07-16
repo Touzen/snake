@@ -13,6 +13,8 @@ Screen* new_screen() {
     curs_set(0);
     keypad(stdscr, 1);  // Enables the arrow keys, among others
     cbreak();           // All keyboard input should be available immediately
+
+    return screen;
 }
 
 void close_screen(Screen* screen) {
