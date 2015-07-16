@@ -39,4 +39,9 @@ void push_move(MoveList* list, Direction direction) {
     
     move->prev = list->latest;
     list->latest = move;
+    
+    // If list is empty then oldest = latest
+    if (list->oldest == NULL) {
+        list->oldest = move;
+    }
 }

@@ -36,7 +36,7 @@ void add_segment(Snake* snake) {
 
 void update_direction(Snake* snake, MoveList* moves) {
     // If the top move is already implemented on the entire snake, discard it
-    if (moves->oldest->age >= snake->length) {
+    if (moves->oldest != NULL && moves->oldest->age >= snake->length) {
         pop_move(moves);
     }
 
