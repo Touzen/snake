@@ -1,24 +1,30 @@
 #ifndef SNAKE_H
 #define SNAKE_H
 
-/**
- * Data structure to represent a snake. Implemented as en enhanced linked list of Segment nodes.
-*/
-typedef struct {
-    Segment* head;
-    Segment* end;
-    int length;
-} Snake;
+#include "move.h"
+
+#include <unistd.h>
 
 /**
  * Data structure to represent a snake segment. Basically a node in a linked list.
 */
-typedef struct {
-    Direction* direction
+typedef struct Segment Segment; 
+struct Segment {
+    Direction direction;
     int x_pos;
     int y_pos;
     Segment* next;
-} Segment;
+};
+
+/**
+ * Data structure to represent a snake. Implemented as en enhanced linked list of Segment nodes.
+*/
+typedef struct Snake Snake;  
+struct Snake {
+    Segment* head;
+    Segment* end;
+    int length;
+};
 
 /**
  * Create a new snake at the specified coordinates.
@@ -43,7 +49,7 @@ void update_direction(Snake* snake, MoveList* moves);
 /**
  * Moves each segment of the snake one step.
 */
-void move(Snake* snake);
+void move_snake(Snake* snake);
 
 /**
  * Given a snake, determine whether or not it has collided with itself.

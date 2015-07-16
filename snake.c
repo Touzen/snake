@@ -3,10 +3,17 @@
 
 Snake* new_snake(int x, int y) {
     Segment* first = malloc(sizeof(Segment));
-    first = (Segment) {.direction = UP, .x_pos = x, .y_pos = y, .next = NULL};
+    first->direction = UP;
+    first->x_pos = x;
+    first->y_pos = y;
+    first->next = NULL;
 
     Snake* s = malloc(sizeof(Snake));
-    *s = (Snake) {.head = first, .end = first, .length = 1}
+    s->head = first; 
+    s->end = first; 
+    s->length = 1;
+    
+    return s;
 }
 
 void delete_snake(Snake* snake) {
@@ -21,20 +28,20 @@ void delete_snake(Snake* snake) {
 }
 
 void add_segment(Snake* snake) {
-    Snake->length++;
+    snake->length++;
     Segment* new_end = malloc(sizeof(Segment)); // TODO: Add checks
-    Snake->end->next = new_end;
-    Snake->end = new_end;
+    snake->end->next = new_end;
+    snake->end = new_end;
 }
 
 void update_direction(Snake* snake, MoveList* moves) {
     // If the top move is already implemented on the entire snake, discard it
     if (moves->oldest->age >= snake->length) {
-        pop_move(moves)
+        pop_move(moves);
     }
 
-    MoveNode* move = moves->latest;
-    Segment* seg = snake->first;
+    MoveItem* move = moves->latest;
+    Segment* seg = snake->head;
     
     int i = 0;
     while (move != NULL && i < snake->length) {
@@ -49,24 +56,24 @@ void update_direction(Snake* snake, MoveList* moves) {
     }
 }
 
-void move(Snake* snake) {
+void move_snake(Snake* snake) {
     Segment* seg = snake->head;
     while(seg != NULL) {
         switch(seg->direction) {
             case UP:
-                seg->y_val--;
+                seg->y_pos--;
                 break;
 
             case DOWN:
-                seg->y_val++;
+                seg->y_pos++;
                 break;
 
             case LEFT:
-                seg->x_val--;
+                seg->x_pos--;
                 break;
 
             case RIGHT:
-                seg->x_val++;
+                seg->x_pos++;
                 break;
         }
 
@@ -75,14 +82,14 @@ void move(Snake* snake) {
 }
 
 int find_collision(Snake* snake) {
-    Segment head = *snake->head;
+    Segment* head = snake->head;
     
-    Segment seg = *head.next;
+    Segment* seg = head->next;
     while(seg != NULL) {
-        if (seg.x_val == head.x_val && seg.y_val == head.y_val) {
+        if (seg->x_pos == head->x_pos && seg->y_pos == head->y_pos) {
             return 1;
         }
-        seg = *seg.next;
+        seg = seg->next;
     }
     
     return 0;

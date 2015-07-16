@@ -4,33 +4,36 @@
 /**
  * Enumeration of different directions.
 */
-typedef enum {
+typedef enum Direction Direction;
+enum Direction {
     UP,
     DOWN,
     LEFT,
     RIGHT,
     NO_DIRECTION
-} Direction;
+};
 
 /**
  * A move item. Implemented as a node in a doubly linked list.
 */
-typedef struct {
+typedef struct MoveItem MoveItem;
+struct MoveItem {
     MoveItem* next;
     MoveItem* prev;
     int age;
     Direction direction;
-} MoveItem;
+};
 
 /**
  * The list of moves.
  * Sort of implemented as a FIFO queue, but is used as a doubly linked list as well.
 */
-typedef struct {
-    MoveNode* oldest;
-    MoveNode* latest;
+typedef struct MoveList MoveList;
+struct MoveList {
+    MoveItem* oldest;
+    MoveItem* latest;
     int length;
-} MoveList;
+};
 
 /**
  * Create a new move list.

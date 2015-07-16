@@ -1,13 +1,17 @@
 #ifndef SNAKEIO_H
 #define SNAKEIO_H
 
+#include "move.h"
+#include "snake.h"
+
 /**
  * Data structure containing screen data.
 */
-typedef struct {
+typedef struct Screen Screen;
+struct Screen {
     int max_x;
     int max_y;
-} Screen;
+};
 
 /**
  * Initializes screen and returns a screen structure.
@@ -22,7 +26,7 @@ void close_screen(Screen* screen);
 /**
  * Gets the last arrow key pressed by the user and returns the appropriate Direction.
 */
-Direction get_input();
+Direction get_direction();
 
 /**
  * Draws the frame unto the screen.

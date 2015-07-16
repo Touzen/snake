@@ -1,6 +1,5 @@
 #include "move.h"
 #include "snake.h"
-#include "item.h"
 #include "snakeio.h"
 
 #include <unistd.h>
@@ -11,18 +10,8 @@ MoveList move_list;
 Snake snake;
 Screen screen;
 
-int main() {
-    init();
-
-    while(tick())
-        ;
-
-    end_game();
-    return 0;
-}
-
 void init() {
-    screen = *(init_screen());
+    screen = *(new_screen());
 
     int x_pos = screen.max_x/2;
     int y_pos = screen.max_y/2;
@@ -39,14 +28,14 @@ void end_game() {
 
 int tick() {
     // Handle user input
-    Direction in = get_input();
+    Direction in = get_direction();
     if (in != NO_DIRECTION) {
         push_move(&move_list, in);
     }
     
     // Handle snake movement
     update_direction(&snake, &move_list);
-    move(&snake);
+    move_snake(&snake);
 
     // Draw everything
     int draw_success = draw_frame(&snake, &screen);
@@ -61,3 +50,14 @@ int tick() {
     sleep(SLEEP_TIME);
     return 1;
 }
+
+int main() {
+    init();
+
+    while(tick())
+        ;
+
+    end_game();
+    return 0;
+}
+

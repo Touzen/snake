@@ -1,5 +1,6 @@
 #include <ncurses.h>
 
+#include "snakeio.h"
 #include "snake.h"
 #include "move.h"
 
@@ -19,7 +20,7 @@ void close_screen(Screen* screen) {
     endwin();       // Close screen
 }
 
-Direction get_input() {
+Direction get_direction() {
     int key = ERR, new_key;
     while((new_key = getch()) != ERR) {
         key = new_key;
@@ -44,16 +45,16 @@ int draw_frame(Snake* snake, Screen* screen) {
     
     Segment* seg = snake->head;
     while(seg != NULL) {
-        if (seg->x_val > screen->max_x || seg->y_val > screen->max_y) {
+        if (seg->x_pos > screen->max_x || seg->y_pos > screen->max_y) {
             return 0; // The snake has hit a wall
         }
         else {
-            mvprintw(seg->y_val, seg->x_val, SNAKE_CHAR);
+            mvprintw(seg->y_pos, seg->x_pos, SNAKE_CHAR);
         }
         
         seg = seg->next;
     }
     
-    refresh() // Refresh screen
+    refresh(); // Refresh screen
     return 1;
 }

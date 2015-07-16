@@ -1,8 +1,10 @@
 #include "move.h"
 
+#include <unistd.h>
+
 MoveList* new_move_list() {
     MoveList* ms = malloc(sizeof(MoveList));
-    *ms = (MoveList) {.top = NULL, length = 0};
+    *ms = (MoveList) {.latest = NULL, .oldest = NULL, .length = 0};
     return ms;
 }
 
@@ -11,7 +13,7 @@ void delete_move_list(MoveList* list) {
         pop_move(list);
     }
 
-    free(snake);
+    free(list);
 }
 
 void pop_move(MoveList* list) {
