@@ -13,7 +13,7 @@ Screen* new_screen() {
     curs_set(0);
     keypad(stdscr, 1);  // Enables the arrow keys, among others
     nodelay(stdscr, 1); // No blocking
-    cbreak();           // All keyboard input should be available immediately
+    cbreak();           // Do not require EOF or \n before providing input
 
     int x, y;
     getmaxyx(stdscr, y, x);
