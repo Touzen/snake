@@ -53,7 +53,8 @@ int draw_frame(Snake* snake, Screen* screen) {
     
     Segment* seg = snake->head;
     while(seg != NULL) {
-        if (seg->x_pos > screen->max_x || seg->y_pos > screen->max_y) {
+        if (seg->x_pos > screen->max_x || seg->y_pos > screen->max_y
+            || seg->x_pos < 0 || seg->y_pos < 0) {
             return 0; // The snake has hit a wall
         }
         else {
