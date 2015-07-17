@@ -12,7 +12,7 @@ Screen* new_screen() {
     noecho();
     curs_set(0);
     keypad(stdscr, 1);  // Enables the arrow keys, among others
-    timeout(0);         // No blocking
+    nodelay(stdscr, 1); // No blocking
     cbreak();           // All keyboard input should be available immediately
 
     int x, y;
