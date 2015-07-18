@@ -28,8 +28,30 @@ void delete_snake(Snake* snake) {
 }
 
 void add_segment(Snake* snake) {
-    snake->length++;
     Segment* new_end = malloc(sizeof(Segment)); // TODO: Add checks
+    switch(snake->end->direction) {
+        case UP:
+            new_end->y_pos = snake->end->y_pos + 1;
+            new_end->x_pos = snake->end->x_pos;
+            break;
+
+        case DOWN:
+            new_end->y_pos = snake->end->y_pos - 1;
+            new_end->x_pos = snake->end->x_pos;
+            break;
+
+        case LEFT:
+            new_end->y_pos = snake->end->y_pos;
+            new_end->x_pos = snake->end->x_pos + 1;
+            break;
+
+        case RIGHT:
+            new_end->y_pos = snake->end->y_pos;
+            new_end->x_pos = snake->end->x_pos - 1;
+            break;
+    }
+
+    snake->length++;
     snake->end->next = new_end;
     snake->end = new_end;
 }
