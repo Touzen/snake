@@ -3,8 +3,9 @@
 #include "snakeio.h"
 
 #include <unistd.h>
+#include <time.h>
 
-#define SLEEP_TIME 1
+#define SLEEP_TIME 100000000
 
 MoveList* move_list;
 Snake* snake;
@@ -24,6 +25,12 @@ void end_game() {
     close_screen(screen);
     delete_snake(snake);
     delete_move_list(move_list);
+}
+
+void snake_sleep() {
+    struct timespec sleep_time = (struct timespec) {.tv_sec = 0, .tv_nsec = SLEEP_TIME};
+    struct timespec remaining;
+    nanosleep(&sleep_time, &remaining);
 }
 
 int tick() {
@@ -47,7 +54,7 @@ int tick() {
         return 0;
     }
     
-    sleep(SLEEP_TIME);
+    snake_sleep();
     return 1;
 }
 
