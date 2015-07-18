@@ -5,6 +5,7 @@
 #include "move.h"
 
 #define SNAKE_CHAR "O"
+#define SNAKE_HEAD "@"
 
 Screen* new_screen() {
     Screen* screen = malloc(sizeof(Screen));
@@ -58,7 +59,8 @@ int draw_frame(Snake* snake, Screen* screen) {
             return 0; // The snake has hit a wall
         }
         else {
-            mvprintw(seg->y_pos, seg->x_pos, SNAKE_CHAR);
+            mvprintw(seg->y_pos, seg->x_pos, 
+                     seg == snake->head ? SNAKE_HEAD : SNAKE_CHAR);
         }
         
         seg = seg->next;
