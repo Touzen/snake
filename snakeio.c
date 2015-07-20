@@ -49,20 +49,13 @@ Direction get_direction() {
     }
 }
 
-int draw_frame(Snake* snake, Screen* screen) {
+void draw_frame(Snake* snake, Screen* screen) {
     clear(); // Clear screen
     
     Segment* seg = snake->head;
     while(seg != NULL) {
-        if (seg->x_pos >= screen->max_x || seg->y_pos >= screen->max_y
-            || seg->x_pos < 0 || seg->y_pos < 0) {
-            return 0; // The snake has hit a wall
-        }
-        else {
-            mvprintw(seg->y_pos, seg->x_pos, 
-                     seg == snake->head ? SNAKE_HEAD : SNAKE_CHAR);
-        }
-        
+        mvprintw(seg->y_pos, seg->x_pos, 
+                 seg == snake->head ? SNAKE_HEAD : SNAKE_CHAR);
         seg = seg->next;
     }
     

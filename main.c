@@ -1,6 +1,7 @@
 #include "move.h"
 #include "snake.h"
 #include "snakeio.h"
+#include "collision.h"
 
 #include <unistd.h>
 #include <time.h>
@@ -45,13 +46,16 @@ int tick() {
     move_snake(snake);
 
     // Draw everything
-    int draw_success = draw_frame(snake, screen);
-    if (!draw_success) {
-        return 0;   // Snake has tried to escape! ;)
-    }
-    
-    if (find_collision(snake)) {
-        return 0;
+    draw_frame(snake, screen);
+
+    Collision collision = find_collision(snake, screen);
+    switch(collision){
+        case SNAKE:
+        case SCREEN:
+            return 0;
+
+        case NONE:
+            break;
     }
     
     snake_sleep();

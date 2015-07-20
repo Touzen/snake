@@ -50,9 +50,4 @@ void update_direction(Snake* snake, MoveList* moves);
  * Moves each segment of the snake one step.
 */
 void move_snake(Snake* snake);
-
-/**
- * Given a snake, determine whether or not it has collided with itself.
-*/
-int find_collision(Snake* snake);
 #endif

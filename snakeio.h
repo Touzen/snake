@@ -31,5 +31,5 @@ Direction get_direction();
 /**
  * Draws the frame unto the screen.
 */
-int draw_frame(Snake* snake, Screen* screen);
+void draw_frame(Snake* snake, Screen* screen);
 #endif

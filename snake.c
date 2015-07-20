@@ -102,17 +102,3 @@ void move_snake(Snake* snake) {
         seg = seg->next;
     }
 }
-
-int find_collision(Snake* snake) {
-    Segment* head = snake->head;
-    
-    Segment* seg = head->next;
-    while(seg != NULL) {
-        if (seg->x_pos == head->x_pos && seg->y_pos == head->y_pos) {
-            return 1;
-        }
-        seg = seg->next;
-    }
-    
-    return 0;
-}
