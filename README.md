@@ -1,4 +1,9 @@
 # snake
 Snake implementation in ncurses.
 
-Currently, the very core logic has been implemented. It doesn't run yet.
+Every time food is eaten, the amount of food on-screen double and the size of the snake increases by one.
+
+##Ideas
+* Better mechanics (food growth is a bit crazy atm)
+* Colors?
+* Variable speed
