@@ -21,6 +21,10 @@ void pop_move(MoveList* list) {
         return;
     }
 
+    if (list->oldest == list->latest) {
+        list->latest = NULL;    // If there's only one element
+    }
+
     MoveItem* old_oldest = list->oldest;
     list->oldest = list->oldest->next;
 
