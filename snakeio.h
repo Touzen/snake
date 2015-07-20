@@ -3,6 +3,7 @@
 
 #include "move.h"
 #include "snake.h"
+#include "food.h"
 
 /**
  * Data structure containing screen data.
@@ -31,5 +32,5 @@ Direction get_direction();
 /**
  * Draws the frame unto the screen.
 */
-void draw_frame(Snake* snake, Screen* screen);
+void draw_frame(Snake* snake, FoodList* food_list);
 #endif

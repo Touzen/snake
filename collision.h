@@ -3,6 +3,7 @@
 
 #include "snake.h"
 #include "snakeio.h"
+#include "food.h"
 
 /**
  * An enum to describe different types of collisions.
@@ -18,5 +19,5 @@ enum Collision {
 /**
  * Function that checks if any collision has occurred.
 */
-Collision find_collision(Snake* snake, Screen* screen);
+Collision find_collision(Snake* snake, FoodList* food_list, Screen* screen);
 #endif

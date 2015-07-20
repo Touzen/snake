@@ -26,13 +26,31 @@ static bool check_autophagy(Snake* snake) {
     return false;
 }
 
-Collision find_collision(Snake* snake, Screen* screen) {
+static bool check_food(Snake* snake, FoodList* food_list) {
+    Segment* head = snake->head;
+    
+    FoodItem* fi = food_list->first;
+    while(fi != NULL) {
+        if (fi->x_pos == head->x_pos && fi->y_pos == head->y_pos) {
+            return true;
+        }
+        fi = fi->next;
+    }
+    
+    return false;
+}
+
+Collision find_collision(Snake* snake, FoodList* food_list, Screen* screen) {
     if (!within_screen(snake, screen)) {
         return SCREEN;
     }
 
     if (check_autophagy(snake)) {
         return SNAKE;
+    }
+
+    if (check_food(snake, food_list)) {
+        return FOOD;
     }
 
     return NONE;

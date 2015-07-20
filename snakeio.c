@@ -3,9 +3,11 @@
 #include "snakeio.h"
 #include "snake.h"
 #include "move.h"
+#include "food.h"
 
 #define SNAKE_CHAR "O"
 #define SNAKE_HEAD "@"
+#define FOOD_CHAR "X"
 
 Screen* new_screen() {
     Screen* screen = malloc(sizeof(Screen));
@@ -49,7 +51,7 @@ Direction get_direction() {
     }
 }
 
-void draw_frame(Snake* snake, Screen* screen) {
+void draw_frame(Snake* snake, FoodList* food_list) {
     clear(); // Clear screen
     
     Segment* seg = snake->head;
@@ -59,6 +61,11 @@ void draw_frame(Snake* snake, Screen* screen) {
         seg = seg->next;
     }
     
+    FoodItem* fi = food_list->first;
+    while(fi != NULL) {
+        mvprintw(fi->y_pos, fi->x_pos, FOOD_CHAR);
+        fi = fi->next;
+    }
+
     refresh(); // Refresh screen
-    return 1;
 }
