@@ -29,6 +29,8 @@ void delete_snake(Snake* snake) {
 
 void add_segment(Snake* snake) {
     Segment* new_end = malloc(sizeof(Segment)); // TODO: Add checks
+    new_end->direction = snake->end->direction;
+    new_end->next = NULL;
     switch(snake->end->direction) {
         case UP:
             new_end->y_pos = snake->end->y_pos + 1;
