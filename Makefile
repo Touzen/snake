@@ -16,4 +16,4 @@ collision.o:
 	gcc -c collision.c
 
 clean:
-	rm *.o
+	rm snake *.o
