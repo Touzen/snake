@@ -1,9 +1,6 @@
 #include <ncurses.h>
 
 #include "snakeio.h"
-#include "snake.h"
-#include "move.h"
-#include "food.h"
 
 #define SNAKE_CHAR "O"
 #define SNAKE_HEAD "@"

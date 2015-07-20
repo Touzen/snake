@@ -1,5 +1,4 @@
 #include "snake.h"
-#include "move.h"
 
 Snake* new_snake(int x, int y) {
     Segment* first = malloc(sizeof(Segment));
